@@ -40,6 +40,7 @@
               "node_modules/aos/dist/aos.js",  
               "node_modules/@fortawesome/fontawesome-free/js/all.min.js",
               "node_modules/highcharts/highcharts.js",
+              "node_modules/highcharts/highcharts-3d.js",
               "node_modules/highcharts/modules/funnel3d.js"
             ]
           },
