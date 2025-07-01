@@ -1,0 +1,12 @@
+.meter-row {
+    transition: background-color 0.2s;
+    border-left: 4px solid;
+}
+.meter-row:hover {
+    background-color: #f8f9fa;
+}
+
+.meter-icon {
+    font-size: 1.25rem;
+    vertical-align: middle;
+}

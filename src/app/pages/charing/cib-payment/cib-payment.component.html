@@ -1,0 +1,58 @@
+<section class="main-content">
+  <!-- <div class="header ">
+    <div class="header-title">
+      <h3>{{ 'Charging' | translate }}</h3>
+    </div>
+
+  </div> -->
+  <div class="row" *ngIf="!isLoadingPayment">
+    <div class="col-md-12">
+      <div class="card charge-card">
+
+        <div class="card-body">
+          <form [formGroup]="form" autocomplete="off" (ngSubmit)="chargeMeter()">
+            <div class="form-group">
+              <label for="amount">{{'Amount' | translate}}</label>
+              <div class="input-group">
+                <input type="number" id="amount" formControlName="amount" class="form-control" 
+                [min]="MIN_AMOUNT"
+                  [max]="MAX_AMOUNT" 
+                  placeholder="{{'Enter_Amount' | translate}}" />
+                <span class="input-group-text">LE</span>
+              </div>
+              <small class="form-text text-muted">
+                {{'Amount_Hint' | translate: { min: MIN_AMOUNT, max: MAX_AMOUNT } }}
+              </small>
+              <div *ngIf="f['amount'].touched && f['amount'].errors" class="text-danger">
+                {{ amountErrorMessage }}
+              </div>
+            </div>
+            <div class="form-group mt-3 text-center">
+              <button type="submit" class="btn btn-primary w-50" [disabled]="!form.valid">
+                <span *ngIf="!isInitPayment">{{'Charge_Now' | translate}}</span>
+                <span *ngIf="isInitPayment">
+                  <i class="fas fa-spinner fa-spin me-2"></i>
+                  {{'Processing' | translate}}
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card payment-card">
+   
+        <div *ngIf="!isLoading" id="embed-target" class="embed-target-box"></div>
+
+        <!-- <div class="payment-buttons" *ngIf="!isLoading">
+          <button class="btn btn-success" (click)="payEmbedded()">Pay with Embedded</button>
+          <button class="btn btn-outline-primary" (click)="payHosted()">Pay on Hosted Page</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+</section>

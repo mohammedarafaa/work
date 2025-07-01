@@ -1,0 +1,74 @@
+<section class="main-content">
+    <div class="header ">
+      <div class="header-title">
+        <h2>{{'Consumption History' | translate}}</h2>
+      </div>
+      <div class="header-actions">
+
+        <div class="btn-group">
+            <button class="btn btn-outline">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              {{'Export' | translate}}
+            </button>
+   
+          </div>
+      </div>
+    </div>
+
+
+    <!-- Customer Service Tab Content -->
+    <div id="service-content">
+    
+      <!-- Bulk Charging Section -->
+      <section class="bulk-charging-section">
+     
+        <table class="meters-table">
+          <thead>
+            <tr>
+        
+              <th>{{'meter_ID' | translate}}</th>
+              <th>{{'Unit Number' | translate}}</th>
+              <th>{{'Address' | translate}}</th>
+              <th>{{'Month' | translate}}</th>
+              <th>{{'consumption_unit' | translate}}</th>
+              <th>{{'cost' | translate}}</th>
+              <th>{{'Action' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>MT-123456</td>
+              <td>Unit 12</td>
+              <td>Block A, Tag</td>
+              <td>March 2025</td>
+              <td>275 kWh</td>
+              <td>412.5 EGP</td>
+              <td><button class="btn btn-outline-primary">View</button></td>
+            </tr>
+            <tr>
+              <td>MT-456789</td>
+              <td>Unit 22</td>
+              <td>Block B, Gardenia</td>
+              <td>February 2025</td>
+              <td>320 kWh</td>
+              <td>480 EGP</td>
+              <td><button class="btn btn-outline-primary">View</button></td>
+            </tr>
+            <tr>
+              <td>MT-789012</td>
+              <td>Unit 5</td>
+              <td>Block C, Wesal</td>
+              <td>January 2025</td>
+              <td>298 kWh</td>
+              <td>447 EGP</td>
+              <td><button class="btn btn-outline-primary">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+    </section>

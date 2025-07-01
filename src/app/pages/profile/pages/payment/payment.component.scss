@@ -1,0 +1,66 @@
+.card-item, .bill-item {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+}
+
+.card-icon, .transaction-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  // background-color: var(--bs-light);
+}
+
+.transaction-icon {
+  color: var(--bs-primary);
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.35em 0.65em;
+  font-weight: 500;
+}
+
+.btn-outline-danger {
+  &:hover {
+    background-color: var(--bs-danger);
+    color: white;
+  }
+}
+
+.btn-outline-primary {
+  &:hover {
+    background-color: var(--bs-primary);
+    color: white;
+  }
+}
+
+// Loading spinner styles
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
+
+// Empty state styles
+.text-muted {
+  color: var(--bs-gray-600) !important;
+}
+
+// Card and bill item hover effects
+.card-item, .bill-item {
+  .border {
+    border-color: var(--bs-gray-200) !important;
+    
+    &:hover {
+      border-color: var(--bs-primary) !important;
+    }
+  }
+}
+

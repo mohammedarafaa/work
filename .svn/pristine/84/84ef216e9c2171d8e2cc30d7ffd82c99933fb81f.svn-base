@@ -1,0 +1,58 @@
+.project-form-container {
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    padding: 2.5rem;
+  }
+
+  .card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+
+  h3 {
+    margin: 1.5rem 0 1rem;
+    color: #212529;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .invalid-feedback {
+    display: block;
+  }
+
+  .error-message {
+    color: #f44336;
+    padding: 20px;
+    text-align: center;
+    background-color: #ffebee;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  mat-card {
+    padding: 20px;
+  }
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 16px 0 0;
+  }
+} 

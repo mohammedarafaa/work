@@ -1,0 +1,82 @@
+<section class="main-content">
+    <div class="header">
+      <div class="header-title">
+        <h2>{{'Meters_Summary' | translate}}</h2>
+      </div>
+      <!-- <div class="header-actions">
+        <div class="btn-group">
+          <button class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            {{'Export' | translate}}
+          </button>
+        </div>
+      </div> -->
+    </div>
+
+    <div class="datatable-container">
+      <div class="datatable-controls">
+        <div class="datatable-length">
+          <select>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        <!-- <div class="datatable-search">
+          <input type="search" placeholder="Search...">
+        </div> -->
+      </div>
+
+      <table class="table px-1" *ngIf="!isLoading">
+          <thead>
+              <tr>
+                  <th *ngFor="let col of listOfColumns" (click)="col !== 'Action' ?onSort(col) : null">
+                      {{col | translate}}
+                      <i *ngIf="col !== 'Action'" class="fas ms-1 {{getSortIcon(col)}}"></i>
+                    </th>
+                </tr>
+            </thead>
+            <app-spinner></app-spinner>
+        <tbody *ngIf="meterSummeryData.content.length > 0">
+            <tr *ngFor="let data of meterSummeryData.content">
+                <td>{{data.meterId}}</td>
+                <td>{{data.meterSerial}}</td>
+                <td>{{data.type}}</td>
+                <td>{{data.block}}-{{data.propertyNo}}</td>
+                <td>{{data.availableCredit | number}} LE</td>
+                <td>{{data.consumption | number}}</td>
+    
+    
+                <td>
+    
+                  <button 
+                    ngbTooltip="{{ 'Details' | translate }}" class="btn  btn-info mx-2">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </button>
+               
+                </td>
+              </tr>
+            </tbody>
+            <tbody style="height: 40vh;" *ngIf="meterSummeryData.content.length === 0"></tbody>
+      </table>
+
+      <div class="pagination" *ngIf="!isLoading">
+        <div class="dataTable-info">
+      {{ 'DataTable_info' |
+      translate : {
+      from: (meterSummeryData.pageable.pageNumber * meterSummeryData.pageable.pageSize) +1 ,
+      to: Math.min(((meterSummeryData.pageable.pageNumber+1) * meterSummeryData.pageable.pageSize),meterSummeryData.totalElements) ,
+      Total:meterSummeryData.totalElements }
+      }}
+      <ngb-pagination *ngIf="!isLoading" [collectionSize]="meterSummeryData.totalElements" [(page)]="paging.page"
+      [maxSize]="6" [pageSize]="paging.size" (pageChange)="pageChange()"></ngb-pagination>
+    </div>
+</div>
+    </div>
+
+</section>

@@ -1,0 +1,255 @@
+import { AccountType } from '@model/auth/auth.model';
+import * as modulePermission from './modulePremission';
+
+export interface SubMenu {
+  name: string;
+  icon: string;
+  href: string;
+  title: string;
+  isAuthorize: any;
+}
+export interface App_Navigation {
+  name: string;
+  icon: string;
+  href: string;
+  title: string;
+  isAuthorize: string[] | null;
+  isSubMenu: boolean;
+  isCollapse: boolean;
+  subMenu: SubMenu[];
+}
+
+export const APP_LINK: App_Navigation[] = [
+
+  {
+    name: 'Dashboard',
+    icon: 'bi bi-grid',
+    href: '/Dashboard',
+    title: '',
+    isAuthorize: null,
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Faqs',
+    icon: 'bi bi-grid',
+    href: '/Faqs',
+    title: '',
+    isAuthorize: [AccountType.ADMIN,AccountType.SYSTEM],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Meters',
+    icon: 'bi bi-speedometer2',
+    href: '/Meters',
+    title: '',
+    isAuthorize: [AccountType.CUSTOMER],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Consumption History',
+        icon: 'bi bi-clock-history',
+        href: '/Consumption_History',
+    title: '',
+    isAuthorize: [AccountType.CUSTOMER],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Meter_Transactions',
+        icon: 'bi bi-clock-history',
+        href: '/Meter_Transactions',
+    title: '',
+    isAuthorize: [AccountType.CUSTOMER],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  // {
+  //   name: 'Charge',
+  //       icon: 'bi bi-lightning-charge-fill',
+  //       href: '/Charge',
+  //   title: '',
+  //   isAuthorize: [AccountType.CUSTOMER,AccountType.SYSTEM],
+  //   isSubMenu: false,
+  //   isCollapse: false,
+  //   subMenu: []
+  // },
+  {
+    name: 'Charging',
+        icon: 'bi bi-lightning-charge-fill',
+        href: '/Charging',
+    title: '',
+    isAuthorize: [AccountType.CUSTOMER],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Charging',
+        icon: 'bi bi-lightning-charge-fill',
+        href: '/Charging_',
+    title: '',
+    isAuthorize: [AccountType.SYSTEM],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  // {
+  //   name: 'Payment',
+  //       icon: 'bi bi-lightning-charge-fill',
+  //       href: '/Payment',
+  //   title: '',
+  //   isAuthorize: [AccountType.CUSTOMER,AccountType.SYSTEM],
+  //   isSubMenu: false,
+  //   isCollapse: false,
+  //   subMenu: []
+  // },
+
+  // {
+  //   name: 'Payment_CIb',
+  //       icon: 'bi bi-lightning-charge-fill',
+  //       href: '/Payment_CIb',
+  //   title: '',
+  //   isAuthorize: [AccountType.CUSTOMER,AccountType.SYSTEM],
+  //   isSubMenu: false,
+  //   isCollapse: false,
+  //   subMenu: []
+  // },
+  {
+    name: 'Customer',
+        icon: 'bi bi-lightning-charge-fill',
+        href: '/Customer',
+    title: '',
+    isAuthorize: [AccountType.SYSTEM,AccountType.ADMIN],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Property',
+        icon: 'bi bi-lightning-charge-fill',
+        href: '/Property',
+    title: '',
+    isAuthorize: [AccountType.ADMIN],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Project',
+        icon: 'bi bi-lightning-charge-fill',
+        href: '/Project',
+    title: '',
+    isAuthorize: [AccountType.ADMIN],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Payment_Getway',
+        icon: 'bi bi-lightning-charge-fill',
+        href: '/Payment_Getway',
+    title: '',
+    isAuthorize: [AccountType.ADMIN],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+];
+
+export const PROFILE_LINK: App_Navigation[] = [
+
+  {
+    name: 'Profile_info',
+        icon: 'fa-solid fa-address-card',
+        href: '/Profile',
+    title: '',
+    isAuthorize: null,
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Edit_Profile',
+        icon: 'fa-solid fa-user-pen',
+        href: '/Profile/Edit_Profile',
+    title: '',
+    isAuthorize: null,
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Change_Password',
+        icon: 'fa-solid fa-key',
+        href: '/Profile/Change_Password',
+    title: '',
+    isAuthorize: null,
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Account_Setting',
+        icon: 'fa-solid fa-address-card',
+        href: '/Profile/Account_Setting',
+    title: '',
+    isAuthorize: [AccountType.CUSTOMER],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Payment',
+        icon: 'fa-solid fa-address-card',
+        href: '/Profile/Payment',
+    title: '',
+    isAuthorize: [AccountType.CUSTOMER],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+  {
+    name: 'Support',
+        icon: 'fa-solid fa-address-card',
+        href: '/Profile/Support',
+    title: '',
+    isAuthorize: [AccountType.CUSTOMER],
+    isSubMenu: false,
+    isCollapse: false,
+    subMenu: []
+  },
+ 
+
+];
+
+export const searchMenu = (searchTerm: string): any => {
+  let results;
+  for (const item of APP_LINK) {
+    // Check if the item's name matches the search term
+    if (item.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+      console.log(item);
+
+      return item; // Return the first matching item
+    }
+
+    // Check if the subMenu exists and search within it
+    if (item.isSubMenu && item.subMenu) {
+      for (const subItem of item.subMenu) {
+        if (subItem.name.toLowerCase() === searchTerm.toLowerCase()) {
+
+          return subItem; // Return the first matching subItem
+        }
+      }
+    }
+  }
+
+  return null; // Return null if no match is found
+}

@@ -1,0 +1,61 @@
+
+        <!-- Meter Filtering Section -->
+        <div class="filter-section">
+          <h2>{{ 'dashboardTemp.yourMeters' | translate }}</h2>
+          <div class="filter-controls">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="categoryFilter">{{ 'dashboardTemp.category' | translate }}</label>
+                  <select class="form-control" id="categoryFilter">
+                    <option value="all">{{ 'dashboardTemp.allMeters' | translate }}</option>
+                    <option value="electricity">{{ 'dashboardThree.electricity' | translate }}</option>
+                    <option value="water">{{ 'dashboardThree.water' | translate }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="locationFilter">{{ 'location' | translate }}</label>
+                  <select class="form-control" id="locationFilter">
+                    <option value="all">{{ 'dashboardTemp.allLocations' | translate }}</option>
+                    <option value="block-a">{{ 'Block A, Unit 104' | translate }}</option>
+                    <option value="block-b">{{ 'Block B, Unit 204' | translate }}</option>
+                    <option value="block-c">{{ 'Block C, Unit 304' | translate }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="unitFilter">{{ 'dashboardTemp.unitNumber' | translate }}</label>
+                  <input type="text" class="form-control" id="unitFilter" placeholder="{{ 'dashboardTemp.unitPlaceholder' | translate }}">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>&nbsp;</label>
+                  <button class="btn btn-primary btn-block">{{ 'dashboardTemp.applyFilters' | translate }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="row g-3"  *ngIf="meterList">
+        <div class="col-lg-4 col-md-6" *ngFor="let meter of meterList.content">
+          <app-meter-card [currentMeter]="meter"></app-meter-card>
+      </div>
+    </div>
+    <div class="row gy-2"  *ngIf="meterList">
+      <div class="dataTable-info">
+          <span>
+           {{ 'DataTable_info' |
+           translate : {
+           from: (meterList.pageable.pageNumber * meterList.pageable.pageSize) +1 ,
+           to: Math.min(((meterList.pageable.pageNumber+1) * meterList.pageable.pageSize),meterList.totalElements) ,
+           Total:meterList.totalElements }
+           }}
+          </span>
+           <ngb-pagination *ngIf="!isLoading" [collectionSize]="meterList.totalElements" [(page)]="paging.page"
+           [maxSize]="6" [pageSize]="paging.size" (pageChange)="pageChange()"></ngb-pagination>
+     </div>
+    </div>

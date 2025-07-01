@@ -1,0 +1,152 @@
+.meter-details-container {
+  padding: 1.5rem;
+
+  .section-header {
+    margin-bottom: 1rem;
+    
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin: 0;
+    }
+  }
+
+  .card {
+    border: none;
+    border-radius: 12px;
+    height: 100%;
+
+
+    .card-header {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 1.25rem;
+      border-radius: 12px 12px 0 0;
+      .card-title {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+        color :var(--bs-primary) !important;
+        
+        i {
+          color :var(--bs-primary) !important;
+        }
+      }
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .label {
+        font-size: 0.875rem;
+        color: #6c757d;
+        font-weight: 500;
+      }
+
+      .value {
+        font-size: 1rem;
+        color: #2c3e50;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .charge-card {
+    .form-group {
+      margin-bottom: 1.5rem;
+
+      label {
+        font-weight: 500;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+      }
+
+      .input-group {
+        .form-control {
+          border-radius: 8px 0 0 8px;
+          border: 1px solid #dee2e6;
+          padding: 0.75rem 1rem;
+          font-size: 1rem;
+
+          &:focus {
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+            border-color: #3498db;
+          }
+        }
+
+        .input-group-text {
+          background-color: #f8f9fa;
+          border: 1px solid #dee2e6;
+          border-left: none;
+          border-radius: 0 8px 8px 0;
+          color: #6c757d;
+          font-weight: 500;
+        }
+      }
+
+      .form-text {
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+      }
+
+      .text-danger {
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
+    }
+
+    // .btn-primary {
+    //   padding: 0.75rem 1.5rem;
+    //   font-weight: 500;
+    //   border-radius: 8px;
+    //   background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    //   border: none;
+    //   transition: all 0.2s ease;
+
+    //   &:hover:not(:disabled) {
+    //     transform: translateY(-1px);
+    //     box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+    //   }
+
+    //   &:disabled {
+    //     background: #e9ecef;
+    //     cursor: not-allowed;
+    //   }
+
+    //   i {
+    //     margin-right: 0.5rem;
+    //   }
+    // }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .meter-details-container {
+    padding: 1rem;
+
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      margin-bottom: 1rem;
+    }
+  }
+}

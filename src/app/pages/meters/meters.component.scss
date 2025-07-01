@@ -1,0 +1,32 @@
+
+.meter-card {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    background-color: white;
+    padding: 1rem;
+  }
+
+  .meter-type.water {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: var(--primary-color);
+  }
+
+  .meter-type.electricity {
+    background-color: rgba(253, 126, 20, 0.1);
+    color: var(--accent-color);
+  }
+
+  .detail-label {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+  }
+
+  .detail-value {
+    font-weight: 500;
+  }
+
+  .low-balance {
+    color: var(--danger-color);
+    font-size: 0.75rem;
+  }

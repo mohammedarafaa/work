@@ -1,0 +1,268 @@
+<section class="main-content">
+    <div class="header ">
+      <div class="header-title">
+        <h3>{{ 'dashboard.title' | translate }}</h3>
+      </div>
+      <div class="header-actions">
+
+        <button class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+          {{ 'charge.newCharge' | translate }} 
+        </button>
+      </div>
+    </div>
+
+    <div class="client-info">
+      <div class="info-card">
+        <h3>{{ 'dashboard.totalMeters' | translate }}</h3>
+        <p>24</p>
+      </div>
+      <div class="info-card">
+        <h3>{{ 'currentLimit' | translate }}</h3>
+        <p>$500.00</p>
+      </div>
+      <div class="info-card">
+        <h3>{{ 'limitPerMeter' | translate }}</h3>
+        <p>$20.83</p>
+      </div>
+    </div>
+    <!-- Customer Service Tab Content -->
+    <div id="service-content">
+      <!-- Client Charging Limit Section -->
+ 
+      <!-- Client Charging Limit Section -->
+      <section class="charging-limit-section">
+        <div class="section-header">
+          <h2 class="section-title">{{'Charge_Meter' | translate}}</h2>
+        </div>
+
+
+        <div class="limit-form">
+          <div class="form-group">
+            <label for="new-limit">{{'charge.chargingAmount' | translate}} </label>
+            <input type="number" id="new-limit" min="0" step="10" value="500">
+          </div>
+          <div class="form-group">
+            <label for="limit-reason">{{'location' | translate}}</label>
+            <select id="limit-reason">
+              <option value="increase">Building A, Floor 1</option>
+              <option value="seasonal">Building A, Floor 2</option>
+              <option value="request">Building B, Floor 1</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="limit-reason">{{'charge.meterType' | translate}}</label>
+            <select id="limit-reason">
+              <option value="increase">{{'charge.electricity' | translate}}</option>
+              <option value="request">{{'charge.water' | translate}}</option>
+              <option value="seasonal">{{'charge.gas' | translate}}</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="card-selection-container pt-2">
+        <div class="row justify-content-between align-items-center">
+         <div class="col-10">
+         <div class="row">
+          <div class="col-2" *ngFor="let card of cards; let i = index">
+            <div
+              class="card"
+              [ngClass]="{'selected': selectedCardIndex === i}"
+              (click)="selectCard(i)">
+
+              <img [src]="card.image" alt="Card Image" class="card-image">
+              <div class="card-details">
+                <p>{{ card.type }}</p>
+              </div>
+            </div>
+          </div>
+         </div>
+         </div>
+          <div class="col-auto">
+            <button class="btn btn-success" (click)="charge()">{{'charge.charge' | translate}}</button>
+          </div>
+        </div>
+        </div>
+
+      </section>
+
+      <section class="charging-limit-section">
+        <div class="section-header">
+          <h2 class="section-title">{{'Payment_Getway' | translate}}</h2>
+        </div>
+
+
+        <div class="payment-container">
+          <div class="payment-header">
+            <h2>Secure Payment</h2>
+            <div class="security-badges">
+              <img src="assets/img/payment/visa.png" alt="Visa" class="payment-logo">
+              <img src="assets/ssl-secure.png" alt="SSL Secure" class="security-logo">
+            </div>
+          </div>
+        
+          <div *ngIf="isLoading" class="loading-container">
+            <div class="spinner"></div>
+            <p>Loading secure payment form...</p>
+          </div>
+        
+          <div *ngIf="paymentError" class="error-container">
+            <div class="error-message">
+              <h3>Payment Error</h3>
+              <p>There was an issue processing your payment. Please try again.</p>
+              <button (click)="retryPayment()" class="retry-button">Retry Payment</button>
+            </div>
+          </div>
+        
+          <div *ngIf="paymentComplete" class="success-container">
+            <div class="success-message">
+              <h3>Payment Successful!</h3>
+              <p>Your payment has been processed successfully.</p>
+            </div>
+          </div>
+        
+          <div *ngIf="paymentUrl && !isLoading && !paymentError && !paymentComplete" 
+               class="iframe-container">
+            <iframe 
+              #paymentIframe
+              [src]="paymentUrl"
+              frameborder="0"
+              width="100%"
+              height="600"
+              class="payment-iframe"
+              sandbox="allow-scripts allow-forms allow-same-origin allow-top-navigation">
+            </iframe>
+          </div>
+        </div>
+        
+      </section>
+      <!-- Bulk Charging Section -->
+      <section class="bulk-charging-section">
+        <div class="section-header">
+          <h2 class="section-title">{{'charge.bulk_charge' | translate}}</h2>
+          <div class="btn-group">
+            <button class="btn btn-outline">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              {{'Export' | translate}}
+            </button>
+            <button class="btn btn-success" id="charge-selected-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+              {{'charge.charge_selected' | translate}}
+            </button>
+          </div>
+        </div>
+
+        <table class="meters-table">
+          <thead>
+            <tr>
+              <th>
+                <label class="checkbox-container">
+                  <input type="checkbox" id="select-all">
+                  <span class="checkmark"></span>
+                </label>
+              </th>
+              <th>{{'meter_ID' | translate}}</th>
+              <th>{{'Address' | translate}}</th>
+              <th>{{'currentBalance' | translate}}</th>
+              <th>{{'last_charge' | translate}}</th>
+              <th>{{'Status' | translate}}</th>
+              <th>{{'Action' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <label class="checkbox-container">
+                  <input type="checkbox" class="meter-checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </td>
+              <td>MT-10245</td>
+              <td>Building A, Floor 1</td>
+              <td>$45.20</td>
+              <td>Apr 5, 2025</td>
+              <td><span class="status-badge status-active">Active</span></td>
+              <td>
+                <button class="btn btn-sm btn-outline" onclick="chargeMeter(this)">{{'Charge' | translate}}</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="checkbox-container">
+                  <input type="checkbox" class="meter-checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </td>
+              <td>MT-10246</td>
+              <td>Building A, Floor 2</td>
+              <td>$12.75</td>
+              <td>Apr 2, 2025</td>
+              <td><span class="status-badge status-low">Low Balance</span></td>
+              <td>
+                <button class="btn btn-sm btn-outline" onclick="chargeMeter(this)">{{'Charge' | translate}}</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="checkbox-container">
+                  <input type="checkbox" class="meter-checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </td>
+              <td>MT-10247</td>
+              <td>Building B, Floor 1</td>
+              <td>$58.30</td>
+              <td>Apr 7, 2025</td>
+              <td><span class="status-badge status-active">Active</span></td>
+              <td>
+                <button class="btn btn-sm btn-outline" onclick="chargeMeter(this)">{{'Charge' | translate}}</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="checkbox-container">
+                  <input type="checkbox" class="meter-checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </td>
+              <td>MT-10248</td>
+              <td>Building B, Floor 2</td>
+              <td>$0.00</td>
+              <td>Mar 15, 2025</td>
+              <td><span class="status-badge status-inactive">Inactive</span></td>
+              <td>
+                <button class="btn btn-sm btn-outline" onclick="chargeMeter(this)">{{'Charge' | translate}}</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="checkbox-container">
+                  <input type="checkbox" class="meter-checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </td>
+              <td>MT-10249</td>
+              <td>Building C, Floor 1</td>
+              <td>$8.45</td>
+              <td>Apr 1, 2025</td>
+              <td><span class="status-badge status-low">Low Balance</span></td>
+              <td>
+                <button class="btn btn-sm btn-outline" onclick="chargeMeter(this)">{{'Charge' | translate}}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+    </section>

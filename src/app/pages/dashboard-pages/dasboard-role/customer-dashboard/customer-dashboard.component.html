@@ -1,0 +1,112 @@
+<section class="dashboard-section">
+
+    <div class="welcome-bar">
+        <h1>{{ 'dashboardTemp.welcome' | translate }}, <span class="user-name">
+          <i  class="fe fe-solid-eye-off"></i>
+
+          {{currentUser ? currentUser.username : ""}}
+        </span></h1>
+        <div class="date-time">{{ 'dashboardTemp.lastLogin' | translate }}: {{now | date:'dd MMMM YYYY , h:mm a'}}</div>
+    </div>
+    <app-stats-card></app-stats-card>
+
+      <!-- Alert Notifications -->
+      <!-- <div class="alert alert-warning alert-dismissible fade show d-flex justify-content-between" role="alert">
+        <div class="alert-text">
+          <strong><i class="fa fa-exclamation-triangle"></i> {{ 'dashboardTemp.lowBalanceAlert' | translate }}!</strong>
+        {{ 'dashboardTemp.lowBalanceMessage' | translate }}
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+
+    <!-- Meter Filtering Section -->
+    <div class="filter-section">
+      <h2>{{ 'dashboardTemp.yourMeters' | translate }}</h2>
+      <div class="filter-controls">
+        <form class="row align-items-end" [formGroup]="form" autocomplete="off">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="compoundId">{{'compound' | translate}} </label>
+              <ng-select [items]="projectList | async" bindValue="id" bindLabel="name" class="custom"
+              placeholder="{{ 'compound_place' | translate}}"
+              [ngClass]="{ 'is-invalid': f['compoundId'].touched && f['compoundId'].errors, 'is-valid': f['compoundId'].valid }"
+              formControlName="compoundId">
+            </ng-select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="propertyId">{{'property' | translate}} </label>
+              <ng-select [items]="propertyList | async" bindValue="id" bindLabel="name" class="custom"
+              placeholder="{{ 'property_place' | translate}}"
+              [ngClass]="{ 'is-invalid': f['propertyId'].touched && f['propertyId'].errors, 'is-valid': f['propertyId'].valid }"
+              formControlName="propertyId">
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="meterType">{{'charge.meterType' | translate}}</label>
+              <ng-select [items]="meterTypes"  class="custom"
+              placeholder="{{ 'meterType_place' | translate}}"
+              [ngClass]="{ 'is-invalid': f['meterType'].touched && f['meterType'].errors, 'is-valid': f['meterType'].valid }"
+              formControlName="meterType">
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>&nbsp;</label>
+              <button class="btn btn-primary btn-block">{{ 'dashboardTemp.applyFilters' | translate }}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Meters Display Section -->
+    <div class="meters-section" *ngIf="meterList">
+      <div class="row" >
+        <div class="col-lg-4 col-md-6" *ngFor="let meter of meterList.content">
+            <app-meter-card [currentMeter]="meter"></app-meter-card>
+        </div>
+
+      </div>
+      <div class="row gy-2">
+        <div class="dataTable-info">
+            <span>
+             {{ 'DataTable_info' |
+             translate : {
+             from: (meterList.pageable.pageNumber * meterList.pageable.pageSize) +1 ,
+             to: Math.min(((meterList.pageable.pageNumber+1) * meterList.pageable.pageSize),meterList.totalElements) ,
+             Total:meterList.totalElements }
+             }}
+            </span>
+             <ngb-pagination *ngIf="!isLoading" [collectionSize]="meterList.totalElements" [(page)]="paging.page"
+             [maxSize]="6" [pageSize]="paging.size" (pageChange)="pageChange()"></ngb-pagination>
+       </div>
+      </div>
+    </div>
+
+    <!-- Consumption Chart Section -->
+    <div class="consumption-section">
+      <h2>{{ 'dashboardTemp.consumptionHistory' | translate }}</h2>
+      <div class="chart-controls">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-outline-primary active">{{ 'dashboardTemp.last3Months' | translate }}</button>
+          <button type="button" class="btn btn-outline-primary">{{ 'dashboardTemp.last6Months' | translate }}</button>
+          <button type="button" class="btn btn-outline-primary">{{ 'dashboardTemp.lastYear' | translate }}</button>
+        </div>
+      </div>
+      <div class="chart-container">
+        <!-- Placeholder for actual chart component -->
+        <highcharts-chart
+        [Highcharts]="Highcharts"
+        [options]="consumptionTrendsChartOptions"
+        style="width: 100%; height: 100%; display: block;">
+        </highcharts-chart>
+      </div>
+    </div>
+  </section>
